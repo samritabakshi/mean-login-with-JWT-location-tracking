@@ -1,0 +1,56 @@
+﻿<div class="col-md-11">
+    <div class="col-md-7 col-md-offset-5">
+        <div class="col-md-10">
+            <h2>Welcome {{currentUser.firstName}} !</h2>
+        </div>
+        <div class="col-md-1">
+            <br>
+            <button class="btn btn-danger" [routerLink]="['/login']">
+                Logout
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <div class="list-group" *ngIf="locationList.length">
+                <a href="#" class="list-group-item active">
+                    Location List for
+                    <b>{{currentUser.firstName.toUpperCase()}}</b>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" *ngFor='let location of locationList; trackBy: index;'>{{location.location}} </a>
+            </div>
+            <div class="list-group" *ngIf="!locationList.length">
+                <a href="#" class="list-group-item active">
+                    Location List for
+                    <b>{{currentUser.firstName.toUpperCase()}}</b>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">No Locations Found</a>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="class-md-12">
+                <div class="col-md-12">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <input id="address" placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success" (click)="setCurrentPosition()">Locate Me</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                        </agm-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+
+    </p>
+</div>
